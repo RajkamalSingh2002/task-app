@@ -1,0 +1,22 @@
+<div class="tasklist-container">
+  <h2>Task List</h2>
+
+  <ul>
+    @for (task of tasks(); track task.id) {
+      <li>
+        <app-task [task]="task" (delete)="deleteTask($event)"></app-task>
+      </li>
+    }
+  </ul>
+
+  @if (tasks().length === 0) {
+    <p class="empty-message">No tasks yet. Add one below!</p>
+  }
+
+  <div class="add-task-form">
+    <h3>Add New Task</h3>
+    <input #title placeholder="Task title" />
+    <input #desc placeholder="Task description" />
+    <button class="btn-add" (click)="addTask(title.value, desc.value); title.value=''; desc.value=''">Add Task</button>
+  </div>
+</div>
